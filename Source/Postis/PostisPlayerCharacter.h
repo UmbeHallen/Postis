@@ -29,6 +29,8 @@ protected:
 public:
 	virtual void Tick(float DeltaTime) override;
 
+	virtual void Jump() override;
+
 	UPROPERTY(BlueprintAssignable, Category = "Events")
 	FOnDeathDelegate OnDeath;
 
@@ -47,9 +49,15 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Health")
 	bool IsDead() const { return bIsDead; }
 
+	UFUNCTION(BlueprintCallable, Category = "Combat")
+	void FirePrimaryAction();
+
 protected:
 	UFUNCTION(BlueprintImplementableEvent, Category = "Health")
 	void OnDeathBP();
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Combat")
+	void OnFirePrimaryActionBP();
 
 private:
 	void HandleDeath();

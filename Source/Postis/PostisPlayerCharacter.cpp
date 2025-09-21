@@ -23,6 +23,25 @@ void APostisPlayerCharacter::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
+void APostisPlayerCharacter::Jump()
+{
+	Super::Jump();
+	
+	// Fire primary action when jumping
+	FirePrimaryAction();
+}
+
+void APostisPlayerCharacter::FirePrimaryAction()
+{
+	if (bIsDead)
+	{
+		return;
+	}
+
+	// Call Blueprint implementable event for custom behavior
+	OnFirePrimaryActionBP();
+}
+
 void APostisPlayerCharacter::TakeDamage(float DamageAmount)
 {
 	if (bIsDead)
